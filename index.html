@@ -5,194 +5,179 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Millcreek Church Utah | A House of Prayer</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     
     <style>
-        :root { --church-maroon: #631D33; --overlay: rgba(0, 0, 0, 0.55); }
-        body, html { margin:0; padding:0; font-family:'Montserrat', sans-serif; background-color:#fcfcfc; color:#1a1a1a; scroll-behavior: smooth; }
+        :root { --maroon: #631D33; --gold: #C5A059; --dark: #121212; }
+        body, html { margin:0; padding:0; font-family:'Montserrat', sans-serif; background-color:#ffffff; color:#1a1a1a; scroll-behavior: smooth; overflow-x: hidden; }
         
-        /* Hero Section with stable Unsplash CDN */
-        .hero-container { 
-            position:relative; 
-            height:100vh; 
-            width:100%; 
-            background-image: linear-gradient(var(--overlay), var(--overlay)), url('https://images.unsplash.com/photo-1438232992991-995b7058bbb3?auto=format&fit=crop&q=80&w=2070'); 
-            background-size:cover; 
-            background-position:center; 
-            display:flex; 
-            flex-direction:column; 
-            align-items:center; 
-            justify-content:center; 
-            color:white; 
-            text-align:center; 
+        /* Typography Pop */
+        h1, h2, h3 { font-family: 'Playfair Display', serif; }
+        .text-maroon { color: var(--maroon); }
+        .bg-maroon { background-color: var(--maroon); }
+
+        /* Modern Navigation */
+        nav { 
+            position: fixed; top: 0; width: 100%; z-index: 100; padding: 1.5rem 5%; 
+            display: flex; justify-content: space-between; align-items: center; 
+            transition: 0.4s; background: transparent; 
+        }
+        nav.scrolled { background: rgba(255,255,255,0.95); box-shadow: 0 5px 20px rgba(0,0,0,0.1); color: var(--dark); }
+        nav.scrolled .nav-link { color: var(--dark); }
+        .nav-link { color: white; font-weight: 600; font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; }
+
+        /* Hero Pop */
+        .hero { 
+            position:relative; height:100vh; width:100%; 
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1438232992991-995b7058bbb3?auto=format&fit=crop&q=80&w=2070'); 
+            background-size:cover; background-position:center; 
+            display:flex; flex-direction:column; align-items:center; justify-content:center; color:white; text-align:center; 
         }
 
-        .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 7vw, 5rem); font-weight: 900; line-height: 1.1; margin-bottom: 1rem; }
-        .hero p { font-size: 1rem; letter-spacing: 5px; text-transform: uppercase; margin-bottom: 3rem; font-weight: 300; }
-
-        .btn-main { 
-            background: var(--church-maroon); 
-            color: white; 
-            padding: 1.2rem 3.5rem; 
-            text-transform: uppercase; 
-            letter-spacing: 2px; 
-            font-size: 0.85rem; 
-            font-weight: 600; 
-            cursor: pointer; 
-            border: none;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
-        .btn-main:hover { background: #4a1526; transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,0.3); }
-
-        .section { padding: 8rem 2rem; max-width: 1200px; margin: 0 auto; }
+        .hero h1 { font-size: clamp(3rem, 10vw, 6.5rem); line-height: 0.9; margin-bottom: 2rem; filter: drop-shadow(0 5px 15px rgba(0,0,0,0.3)); }
         
+        .btn-gold { 
+            background: var(--gold); color: white; padding: 1.2rem 3rem; 
+            text-transform: uppercase; letter-spacing: 3px; font-weight: 700; font-size: 0.8rem;
+            border: none; border-radius: 50px; transition: 0.3s; box-shadow: 0 10px 25px rgba(197, 160, 89, 0.4);
+        }
+        .btn-gold:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(197, 160, 89, 0.6); background: #b38e47; }
+
+        /* Card Depth */
         .glass-card { 
-            background: white; 
-            padding: 3rem; 
-            border-radius: 12px; 
-            box-shadow: 0 20px 50px rgba(0,0,0,0.05); 
-            border-top: 5px solid var(--church-maroon);
+            background: white; border-radius: 20px; padding: 3rem;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.08); border: 1px solid rgba(0,0,0,0.03);
+            position: relative; z-index: 10; margin-top: -100px;
         }
-        
-        .gallery-img { 
-            width: 100%; 
-            height: 400px; 
-            object-fit: cover; 
-            border-radius: 12px; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-        
-        .schedule-box { 
-            background: #fdfafb; 
-            padding: 2rem; 
-            border-radius: 8px; 
-            border: 1px solid #eee;
-            transition: 0.3s;
-        }
-        .schedule-box:hover { border-color: var(--church-maroon); }
 
-        footer { background: #111; color: white; padding: 5rem 2rem; text-align: center; }
-        
-        /* Navigation Overlay Bar */
-        nav { position: absolute; top: 0; width: 100%; z-index: 50; padding: 2.5rem; display: flex; justify-content: space-between; align-items: center; color: white; }
+        /* Image Masking Pop */
+        .img-reveal { border-radius: 30px; overflow: hidden; position: relative; }
+        .img-reveal img { width: 100%; height: 500px; object-fit: cover; transition: 1s; }
+        .img-reveal:hover img { transform: scale(1.1); }
+
+        /* Footer Fixed Link & Pop */
+        footer { 
+            background: linear-gradient(to bottom, #1a1a1a, #000000); 
+            color: white; padding: 100px 5% 50px; 
+        }
     </style>
 </head>
 <body>
 
-    <nav>
-        <div class="text-xl font-bold font-serif tracking-tighter">MILLCREEK CHURCH</div>
-        <div class="hidden md:block text-[0.6rem] uppercase tracking-[4px] opacity-80">Salt Lake City, Utah</div>
+    <nav id="navbar">
+        <div class="text-2xl font-black italic tracking-tighter">MC.</div>
+        <div class="flex space-x-8">
+            <a href="#about" class="nav-link">Mission</a>
+            <a href="#pastor" class="nav-link">Pastor</a>
+            <a href="#contact" class="nav-link">Visit</a>
+        </div>
     </nav>
 
-    <section class="hero-container">
-        <div class="z-10 px-6 max-w-4xl">
-            <h1>House of Prayer</h1>
-            <p>Millcreek Church Utah</p>
-            <button onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'});" class="btn-main">Plan Your Visit</button>
+    <section class="hero">
+        <div class="z-10 px-6 max-w-5xl">
+            <span class="uppercase tracking-[10px] text-sm mb-6 block font-light">Salt Lake City, Utah</span>
+            <h1>House of<br><span class="italic font-light">Prayer.</span></h1>
+            <button onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'});" class="btn-gold mt-8">Come as you are</button>
         </div>
     </section>
 
-    <section class="section grid lg:grid-cols-2 gap-20" id="about">
-        <div>
-            <h2 class="text-5xl font-serif font-bold mb-8 text-zinc-900">Welcoming You Home.</h2>
-            <p class="text-xl italic text-maroon-800 mb-8" style="color:#631D33;">“My house should be called a House of Prayer.” — Isaiah 56:7</p>
-            <p class="leading-relaxed text-gray-600 text-lg mb-10">
-                The House of Prayer is the heartbeat of our ministry. We believe that every follower of Christ is called to be an Ambassador of His grace. We invite you to join us as we labor together, asking God to send workers into His harvest right here in Millcreek.
-            </p>
-            
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <div class="schedule-box">
-                    <span class="text-[0.6rem] uppercase tracking-widest text-gray-400 font-bold block mb-2">Weekly Bible Study</span>
-                    <h4 class="font-bold text-lg mb-1">SATURDAY</h4>
-                    <p class="text-gray-600">1:00 PM – 2:30 PM</p>
-                </div>
-                <div class="schedule-box">
-                    <span class="text-[0.6rem] uppercase tracking-widest text-gray-400 font-bold block mb-2">Main Worship Service</span>
-                    <h4 class="font-bold text-lg mb-1">SUNDAY</h4>
-                    <p class="text-gray-600">10:45 AM – 12:15 PM</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="glass-card">
-            <h3 class="text-3xl font-serif mb-8 text-zinc-800">Our Ministries</h3>
-            <div class="space-y-8">
-                <div class="flex items-start">
-                    <div class="bg-maroon-50 p-3 rounded-full mr-5" style="background: #fff0f3;"><i class="fa-solid fa-child text-[#631D33]"></i></div>
-                    <div>
-                        <h5 class="font-bold text-lg mb-1">Kids Groups</h5>
-                        <p class="text-gray-500 leading-snug">Empowering our youth through Scripture and community activities.</p>
-                    </div>
-                </div>
-                <div class="flex items-start">
-                    <div class="bg-maroon-50 p-3 rounded-full mr-5" style="background: #fff0f3;"><i class="fa-solid fa-users text-[#631D33]"></i></div>
-                    <div>
-                        <h5 class="font-bold text-lg mb-1">Parent Center</h5>
-                        <p class="text-gray-500 leading-snug">Resources for guiding your family in spiritual growth.</p>
-                    </div>
-                </div>
-                <div class="flex items-start">
-                    <div class="bg-maroon-50 p-3 rounded-full mr-5" style="background: #fff0f3;"><i class="fa-solid fa-heart text-[#631D33]"></i></div>
-                    <div>
-                        <h5 class="font-bold text-lg mb-1">Women’s Ministry</h5>
-                        <p class="text-gray-500 leading-snug">A circle of wisdom and strength inspired by Proverbs 31.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="bg-zinc-50 py-24 border-y border-zinc-100">
-        <div class="section grid md:grid-cols-2 gap-16 items-center">
-            <img src="https://images.unsplash.com/photo-1504052434569-70ad5836ab65?auto=format&fit=crop&q=80&w=1000" alt="Bible Study" class="gallery-img">
-            <div>
-                <h2 class="text-4xl font-serif font-bold mb-6">Pastor Dan Mamatela</h2>
-                <p class="text-gray-700 leading-relaxed text-lg mb-8">
-                    From refugee to preaching the gospel—Pastor Dan’s journey is a powerful testament to redemption. 
-                    He leads Millcreek with a vision of a church that prays together and serves as a beacon of hope for the Salt Lake valley.
+    <section class="max-w-7xl mx-auto px-6 pb-24" id="about">
+        <div class="glass-card grid lg:grid-cols-3 gap-12 items-center">
+            <div class="lg:col-span-2">
+                <h2 class="text-5xl font-bold mb-6 text-maroon">A Place to Belong.</h2>
+                <p class="text-gray-600 text-lg leading-relaxed mb-8">
+                    Millcreek Church is more than a building; it is a movement of Ambassadors. Inspired by <span class="font-bold text-black">Isaiah 56:7</span>, we are dedicated to becoming a true House of Prayer for the Salt Lake community.
                 </p>
-                <div class="h-px w-20 bg-[#631D33] mb-6"></div>
-                <p class="uppercase tracking-widest text-xs font-bold text-zinc-400">Lead Pastor • Millcreek Church</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="border-l-4 border-[#C5A059] pl-6 py-2">
+                        <h4 class="font-bold uppercase tracking-widest text-xs text-gray-400">Worship Service</h4>
+                        <p class="text-xl font-bold">Sundays at 10:45 AM</p>
+                    </div>
+                    <div class="border-l-4 border-[#C5A059] pl-6 py-2">
+                        <h4 class="font-bold uppercase tracking-widest text-xs text-gray-400">Bible Study</h4>
+                        <p class="text-xl font-bold">Saturdays at 1:00 PM</p>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-zinc-50 p-8 rounded-2xl">
+                <h3 class="text-2xl font-bold mb-6">Ministries</h3>
+                <ul class="space-y-4 font-semibold text-zinc-700">
+                    <li class="flex items-center"><i class="fa-solid fa-check-circle mr-3 text-gold"></i> Kids Groups</li>
+                    <li class="flex items-center"><i class="fa-solid fa-check-circle mr-3 text-gold"></i> Parent Support</li>
+                    <li class="flex items-center"><i class="fa-solid fa-check-circle mr-3 text-gold"></i> Women’s Wisdom</li>
+                </ul>
             </div>
         </div>
     </section>
 
-    <section class="section text-center" id="contact">
-        <h2 class="text-4xl font-serif font-bold mb-16">Connect With Us</h2>
-        <div class="grid md:grid-cols-3 gap-12 mb-20">
-            <div class="p-8">
-                <i class="fa-solid fa-phone text-3xl text-zinc-300 mb-6"></i>
-                <h4 class="text-xs uppercase tracking-widest font-bold text-gray-400 mb-2">Phone</h4>
-                <p class="text-lg font-bold">(801) 278-5683</p>
+    <section class="py-24 bg-white" id="pastor">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20 items-center">
+            <div class="img-reveal shadow-2xl">
+                <img src="https://images.unsplash.com/photo-1515162305285-0293e4767cc2?auto=format&fit=crop&q=80&w=1000" alt="Church Ministry">
             </div>
-            <div class="p-8 border-x border-zinc-100">
-                <i class="fa-solid fa-location-dot text-3xl text-zinc-300 mb-6"></i>
-                <h4 class="text-xs uppercase tracking-widest font-bold text-gray-400 mb-2">Address</h4>
-                <p class="text-lg font-bold italic">1515 E 4500 S</p>
-                <p class="text-gray-500">Millcreek, UT 84124</p>
-            </div>
-            <div class="p-8">
-                <i class="fa-solid fa-envelope text-3xl text-zinc-300 mb-6"></i>
-                <h4 class="text-xs uppercase tracking-widest font-bold text-gray-400 mb-2">Email</h4>
-                <p class="text-lg font-bold">prayers@millcreekutahchurch.com</p>
+            <div>
+                <span class="text-gold font-bold uppercase tracking-widest text-xs mb-4 block">Leadership</span>
+                <h2 class="text-5xl font-bold mb-8">Pastor Dan Mamatela</h2>
+                <p class="text-gray-600 text-lg leading-relaxed mb-8">
+                    From refugee to redemption, Pastor Dan's story defines our church. He leads with a passion for the Gospel and a heart for those seeking a second chance. 
+                </p>
+                <blockquote class="italic text-2xl font-serif text-maroon border-l-4 border-maroon pl-8 mb-8">
+                    "We are Ambassadors of Christ, called to the harvest."
+                </blockquote>
             </div>
         </div>
-        
-        <img src="https://images.unsplash.com/photo-1445043432340-84444d713a24?auto=format&fit=crop&q=80&w=1200" alt="Church Prayer" class="w-full h-[500px] object-cover rounded-2xl shadow-2xl">
+    </section>
+
+    <section class="py-24 bg-zinc-900 text-white relative overflow-hidden" id="contact">
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <h2 class="text-5xl font-bold mb-10">Visit Us in Millcreek</h2>
+                    <div class="space-y-8">
+                        <div class="flex items-center space-x-6">
+                            <div class="w-14 h-14 rounded-full border border-zinc-700 flex items-center justify-center text-gold"><i class="fa-solid fa-map-marker-alt"></i></div>
+                            <p class="text-xl">1515 E 4500 S, Millcreek, UT 84124</p>
+                        </div>
+                        <div class="flex items-center space-x-6">
+                            <div class="w-14 h-14 rounded-full border border-zinc-700 flex items-center justify-center text-gold"><i class="fa-solid fa-phone"></i></div>
+                            <p class="text-xl">(801) 278-5683</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="img-reveal h-[400px]">
+                    <img src="https://images.unsplash.com/photo-1470114755713-31234050a4d9?auto=format&fit=crop&q=80&w=1200" alt="Prayer Architecture">
+                </div>
+            </div>
+        </div>
     </section>
 
     <footer>
-        <div class="text-2xl font-serif font-bold tracking-tighter mb-4">MILLCREEK CHURCH</div>
-        <div class="flex justify-center space-x-6 mb-8 text-zinc-500">
-            <a href="#" class="hover:text-white transition"><i class="fa-brands fa-facebook"></i></a>
-            <a href="#" class="hover:text-white transition"><i class="fa-brands fa-instagram"></i></a>
-            <a href="#" class="hover:text-white transition"><i class="fa-brands fa-youtube"></i></a>
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 border-b border-zinc-800 pb-16 mb-16">
+            <div>
+                <h3 class="text-3xl font-bold mb-6 italic">Millcreek Church</h3>
+                <p class="text-zinc-500 max-w-sm">Dedicated to the glory of God and the fellowship of His people in the Salt Lake Valley.</p>
+            </div>
+            <div class="flex md:justify-end space-x-10 items-center">
+                <a href="#" class="text-2xl hover:text-gold transition"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#" class="text-2xl hover:text-gold transition"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="text-2xl hover:text-gold transition"><i class="fa-brands fa-vimeo"></i></a>
+            </div>
         </div>
-        <p class="text-zinc-600 text-xs tracking-widest uppercase">© 2026 Millcreek Utah Church • Salt Lake City</p>
+        <p class="text-center text-zinc-600 uppercase tracking-widest text-[0.6rem]">© 2026 Millcreek Utah Church • All Rights Reserved</p>
     </footer>
 
+    <script>
+        // Navbar Scroll Logic
+        window.onscroll = function() {
+            var nav = document.getElementById('navbar');
+            if (window.pageYOffset > 100) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        };
+    </script>
 </body>
 </html>
